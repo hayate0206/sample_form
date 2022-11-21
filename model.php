@@ -1,78 +1,68 @@
 <?php
-class Person {
-    private $name;
+class ContactModel{
+    private $full_name;
     private $kana;
-    private $phone;
-    private $birth;
     private $gender;
+    private $birth;
+    private $address;
+    private $phone;
     private $mail;
     private $mail_confirm;
-    private $contact;
+    private $password;
+    private $password_confirm;
 
-    public function __construct($name, $age, $phone, $birth, $gender, $mail, $mail_confirm, $contact){
-        $this->name = $name;
-        $this->age = $age;
-        $this->phone = $phone;
-        $this->birth = $birth;
+    function __construct(
+        $full_name, 
+        $kana,
+        $gender,
+        $birth, 
+        $address,
+        $phone, 
+        $mail, 
+        $mail_confirm, 
+        $password,
+        $password_confirm
+    ) {
+        $this->full_name = $full_name;
+        $this->kana = $kana;
         $this->gender = $gender;
+        $this->birth = $birth;
+        $this->address = $birth;
+        $this->phone = $phone;
         $this->mail = $mail;
-        $this->getMail_confirm = $mail_confirm;
-        $this->contact = $contact;
+        $this->mail_confirm = $mail_confirm;
+        $this->password = $password;
+        $this->password_confirm = $password_confirm;
+    }
+    public function get_full_name(){
+        return $this->full_name;
+    }
+    public function get_kana(){
+        return $this->kana;
+    }
+    public function get_gender(){
+        return $this->gender;
+    }
+    public function get_birth(){
+        return $this->birth;
+    }
+    public function get_address(){
+        return $this->address;
+    }
+    public function get_phone(){
+        return $this->phone;
+    }
+    public function get_mail(){
+        return $this->mail;
+    }
+    public function get_mail_confirm(){
+        return $this->mail_confirm;
+    }
+    public function get_password(){
+        return $this->password;
+    }
+    public function get_password_confirm(){
+        return $this->password_confirm;
     }
 }
-
-// setter
-public function setName ($value) {
-    $this->name = $value;
-}
-public function setKana ($value) {
-    $this->kana = $value;
-}
-public function setPhone ($value) {
-    $this->phone = $value;
-}
-public function setBirth ($value) {
-    $this->birth = $value;
-}
-public function setGender ($value) {
-    $this->gender = $value;
-}
-public function setMail ($value) {
-    $this->mail = $value;
-}
-public function setMail_confirm ($value) {
-    $this->mail_confirm = $value;
-}
-public function setContact ($value) {
-    $this->contact = $value;
-}
-
-// getter
-public function getName() {
-    return $this->name;
-}
-public function getKana() {
-    return $this->kana;
-}
-public function getPhone() {
-    return $this->phone;
-}
-public function getBirth() {
-    return $this->birth;
-}
-public function getGender() {
-    return $this->gender;
-}
-public function getMail() {
-    return $this->mail;
-}
-public function getMail_confirm() {
-    return $this->mail_confirm;
-}
-public function getContact() {
-    return $this->contact;
-}
-// ageを取得するgetterメソッド →　public function getAge(){
-//                               return $this->age;
-// $taro = new Person('太郎', 25);
-// echo $taro->getAge(); // 「25」と表示される
+?>
