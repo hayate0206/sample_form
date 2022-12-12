@@ -1,6 +1,6 @@
 <?php
 class Person {
-    private $name;
+    private $full_name;
     private $kana;
     private $gender;
     private $birth;
@@ -14,7 +14,7 @@ class Person {
     private $created_at;
 
     public function __construct(
-            $name, 
+            $full_name, 
             $kana, 
             $gender, 
             $birth, 
@@ -27,7 +27,7 @@ class Person {
             $contact,
             $created_at
     ){
-        $this->name = $name;
+        $this->full_name = $full_name;
         $this->kana = $kana;
         $this->gender = $gender;
         $this->birth = $birth;
@@ -42,83 +42,79 @@ class Person {
     }
 
 
-// setter
-public function setName ($value) {
-    $this->name = $value;
-}
-public function setKana ($value) {
-    $this->kana = $value;
-}
-public function setGender ($value) {
-    $this->gender = $value;
-}
-public function setBirth ($value) {
-    $this->birth = $value;
-}
-public function setAddress ($value) {
-    $this->address = $value;
-}
-public function setPhone ($value) {
-    $this->phone = $value;
-}
-public function setMail ($value) {
-    $this->mail = $value;
-}
-public function setMail_confirm ($value) {
-    $this->mail_confirm = $value;
-}
-public function setPassword ($value) {
-    $this->password = $value;
-}
-public function setPassword_confirm ($value) {
-    $this->password_confirm = $value;
-}
-public function setContact ($value) {
-    $this->contact = $value;
-}
-public function setCreated_at ($value) {
-    $this->created_at = $value;
-}
+    // setter
+    public function setFull_name ($value) {
+        $this->full_name = $value;
+    }
+    public function setKana ($value) {
+        $this->kana = $value;
+    }
+    public function setGender ($value) {
+        $this->gender = $value;
+    }
+    public function setBirth ($value) {
+        $this->birth = $value;
+    }
+    public function setAddress ($value) {
+        $this->address = $value;
+    }
+    public function setPhone ($value) {
+        $this->phone = $value;
+    }
+    public function setMail ($value) {
+        $this->mail = $value;
+    }
+    public function setMail_confirm ($value) {
+        $this->mail_confirm = $value;
+    }
+    public function setPassword ($value) {
+        $this->password = $value;
+    }
+    public function setPassword_confirm ($value) {
+        $this->password_confirm = $value;
+    }
+    public function setContact ($value) {
+        $this->contact = $value;
+    }
+    public function setCreated_at ($value) {
+        $this->created_at = $value;
+    }
 
-// getter
-public function getName() {
-    return $this->name;
-}
-public function getKana() {
-    return $this->kana;
-}
-public function getGender() {
-    return $this->gender;
-}
-public function getBirth() {
-    return $this->birth;
-}
-public function getPhone() {
-    return $this->phone;
-}
-public function getAddress() {
-    return $this->address;
-}
-public function getMail() {
-    return $this->mail;
-}
-public function getMail_confirm() {
-    return $this->mail_confirm;
-}
-public function getPassword() {
-    return $this->password;
-}
-public function getPassword_confirm() {
-    return $this->password_confirm;
-}
-public function getContact() {
-    return $this->contact;
-}
-public function getCreated_at() {
-    return $this->created_at;
-}
-// nameを取得するgetterメソッド →　public function getName(){
-//                               return $this->name;
-// $taro = new Person('太郎', 25);
-// echo $taro->getAge(); // 「25」と表示される
+    // getter
+    public function getFull_name() {
+        return $this->full_name;
+    }
+    public function getKana() {
+        return $this->kana;
+    }
+    public function getGender() {
+        return $this->gender;
+    }
+    public function getBirth() {
+        return $this->birth;
+    }
+    public function getPhone() {
+        return $this->phone;
+    }
+    public function getAddress() {
+        return $this->address;
+    }
+    public function getMail() {
+        return $this->mail;
+    }
+    public function getMail_confirm() {
+        return $this->mail_confirm;
+    }
+    public function getPassword() {
+        return $this->password;
+    }
+    public function getPassword_confirm() {
+        return $this->password_confirm;
+    }
+    public function getContact() {
+        return $this->contact;
+    }
+    public function getCreated_at() {
+        return $this->created_at;
+    }
 }

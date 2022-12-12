@@ -1,52 +1,60 @@
 <?php
+  // error_reporting(0);                      // Warning非表示
 	require_once('./data.php');
-
-    //データベース接続
-    $db = mysqli_connect('localhost', 'root', 'root', 'sample_app2');
-    if(mysqli_connect_errno()){
-      echo "エラー";
-    }else{
-      echo "成功";
-    }
-    // テーブルのデータを取得する
-    $query = "SELECT created_at FROM sample_form;";
-
-    // クエリを実行
-    if ($result = mysqli_query($db, $query)) {
-        echo "SELECT に成功しました。\n";
-        $row = [];
-        foreach ($result as $row) {
-          echo $row["created_at"];
-          // var_dump($row["created_at"]);
-        }
-    }
-    // 接続を閉じる
-    mysqli_close($db);
+  
+  $db = new Db();                             // データベース接続
+  $data = $db->getContactAll();               // データベースから取得
+  $connectionClose = $db->connectionClose();  // データベース切断
+  
+  $colNum = 3;                  // id, created_at, contact_input
+  $contactNum  = count($data);  // データベースに登録されてるお問い合わせ情報数
 ?>
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="sample.css">
 <title>基本的な表の作成</title>
 </head>
 <body>
-  
     <table border="1">
+      <h2>管理者画面</h2>
       <tr>
-        <th>お問い合わせ時刻</th>
-        <th>内容</th>
+        <td></td>
+        <td>ID</td>
+        <td>お問い合わせ時刻</td>
+        <td>内容</td>
       </tr>
-      <form action="detail.php" method="post">
-        <tr>
-          <td>
-            <button type="submit" name="info"><?php if(isset($row) !== ""){ echo $row["created_at"];}?></button>
-          </td>
-          <td>ログインでき...</td>
-        </tr>
-      </form>  
-      <tr>
-        <td>1999年11月21日(月) 19:47:32</td>
-        <td>xxxxx...</td>
-      </tr>
+      <?php
+        for($i = 0; $i < count($data); $i++){
+      ?>
+        <form action="detail.php" method="post">
+          <tr>
+            <td>
+              <input type="checkbox" id="check">
+            </td>
+            <div class="check">
+              <td>
+                <?php echo $data[$i]["id"] ?>
+              </td>
+            </div>
+            <div class="check">
+              <td>
+                <input type="hidden" name="id" value="<?php echo $data[$i]["id"]?>" />
+                <button type="submit" name="info">
+                  <?php echo $data[$i]["created_at"] ?>
+                </button>
+              </td>
+            </div>
+            <div class="check">
+              <td>
+                <?php echo $data[$i]["contact_input"] ?>
+              </td>
+            </div>
+          </tr>
+        </form>
+      <?php 
+      }
+      ?>
     </table>
   
 </body>

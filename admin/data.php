@@ -5,12 +5,13 @@ class Db{
 
     //データベース接続
     function __construct(){
+        // $db = mysqli_connect('localhost', 'root', 'root', 'sample_app2');
         $dsn = 'mysql:host=localhost;dbname=sample_app2;charset=utf8';	//DSN(Data Source Name)
         $user = 'root';
         $pass = 'root';
+
         $this->db = new PDO($dsn, $user, $pass);	//PDO(PHP Data Objects)
 
-        // $db = mysqli_connect('localhost', 'root', 'root', 'sample_app2');
         // if(mysqli_connect_errno()){
         // echo "エラー";
         // }else{
@@ -18,7 +19,60 @@ class Db{
         // }
     }
 
-    //データベース登録
+    // テーブルのデータを取得(SELECT文)
+    function getData($mail, $password){
+        $sql = "
+                SELECT * 
+                FROM sample_form 
+                WHERE mail = ? 
+                AND password = ?
+        ";
+    //prepareでSQL文をセット
+        $sth = $this->db->prepare($sql);
+    //executeで実行
+        $param = [
+            $mail,
+            $password
+        ];
+        $sth->execute($param);
+    //結果セットから取得
+        $result = $sth->fetch();
+
+        return $result;
+    }
+    function getUserDetail($id){
+        $sql = "
+                SELECT * 
+                FROM sample_form 
+                WHERE id = ?
+        ";
+        //prepareでSQL文をセット
+        $sth = $this->db->prepare($sql);
+        //executeで実行
+        $param = [
+            $id
+        ];
+        $sth->execute($param);
+        //結果セットから取得
+        $result = $sth->fetch();
+        return $result;
+    }
+    // テーブルのid, created_at, contact_inputのみ取得(SELECT文)
+    function getContactAll(){
+        $sql = "
+                SELECT id, created_at, contact_input 
+                FROM sample_form 
+        ";
+    //prepareでSQL文をセット
+        $sth = $this->db->prepare($sql);
+    //executeで実行
+        $sth->execute();
+    //結果セットから取得
+        $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    //データベース登録(INSERT文)
     function insert_sample_form(
         $full_name, 
         $name_kana, 
@@ -84,6 +138,11 @@ class Db{
             // 接続エラー
             die('DB接続エラー' . $e->getMessage());
         }
+    }
+
+    // データベース接続を閉じる
+    function connectionClose(){
+        $this->db = null;
     }
 }
 ?>
