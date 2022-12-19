@@ -42,10 +42,9 @@
             $errors['passwordRange'] = $passRangeError;
         }
 
-        // データベース接続
-        $db = new Db();
-        $data = $db->getData($mail, $password);
-        $connectionClose = $db->connectionClose();
+        $db = new Db();                             // データベース接続
+        $data = $db->getData($mail, $password);     // データベースから取得
+        $connectionClose = $db->connectionClose();  // データベース切断
         if($data === false){
             $errors['loginError'] = $loginError;
         }else{
@@ -53,13 +52,16 @@
             header('Location: ./index.php');
             exit();
         }
+    }else if(isset($_POST['newMember'])){
+        // 遷移
+        header('Location: ./newMember.php');
+        exit();
     }
 ?>
 <!doctype html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="sample.css">
 <title>SampleForm</title>
 </head>
 <body>
@@ -83,7 +85,7 @@
                 </td> 
                 <td>
                     <?php
-                        // キーがあるかないかで判定(array_key_exists(キー, 対象の配列))
+                        // 未入力、形式
                         if(
                             isset($_POST['login']) 
                             && array_key_exists('mailEmpty', $errors)
@@ -95,12 +97,6 @@
                             && array_key_exists('mailFormat', $errors)
                         ){
                             echo '<p><font color="red">'.$errors['mailFormat'].'</font></p>';
-                        }
-                        if(
-                            isset($_POST['login']) 
-                            && array_key_exists('loginError', $errors)
-                        ){
-                            echo '<p><font color="red">'.$errors['loginError'].'</font></p>';
                         }
                     ?>
                 </td>  
@@ -139,7 +135,7 @@
                 <td></td>
                 <td>
                     <input type="submit" name="login" value="ログイン" />
-                    <input type="submit" name="register" value="新規登録" />
+                    <input type="submit" name="newMember" value="新規登録" />
                 </td>
             </tr>
         </form>

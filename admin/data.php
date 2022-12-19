@@ -1,5 +1,4 @@
 <?php
-// require_once('./model.php');    //インポート
 class Db{
     private $db;
 
@@ -19,7 +18,7 @@ class Db{
         // }
     }
 
-    // テーブルのデータを取得(SELECT文)
+    // ------- テーブルのデータを取得 -------- ログイン
     function getData($mail, $password){
         $sql = "
                 SELECT * 
@@ -40,6 +39,8 @@ class Db{
 
         return $result;
     }
+
+    // ------ テーブルのデータ全てを取得 ------ お問い合わせした人の詳細
     function getUserDetail($id){
         $sql = "
                 SELECT * 
@@ -57,10 +58,11 @@ class Db{
         $result = $sth->fetch();
         return $result;
     }
-    // テーブルのid, created_at, contact_inputのみ取得(SELECT文)
-    function getContactAll(){
+
+    // ------ テーブルのデータ(id, created_at, contact_input)を取得 ------ 管理画面(ID,問い合わせ時刻、内容)
+    function getContactInfo(){
         $sql = "
-                SELECT id, created_at, contact_input 
+                SELECT id, created_at, contact_input, check_color 
                 FROM sample_form 
         ";
     //prepareでSQL文をセット
@@ -71,9 +73,9 @@ class Db{
         $result = $sth->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-
-    //データベース登録(INSERT文)
-    function insert_sample_form(
+    
+    // -------- データベース登録 -------- 新規会員登録
+    function infoRegist(
         $full_name, 
         $name_kana, 
         $gender, 
@@ -86,7 +88,7 @@ class Db{
     ){
         try {
             // INSERT文を変数に格納
-            $sql = "INSERT INTO sample_form2(
+            $sql = "INSERT INTO sample_form(
                     $full_name, 
                     $name_kana, 
                     $gender, 
@@ -108,10 +110,6 @@ class Db{
                     :password, 
                     :contact
                 )";
-            
-            //prepareメソッドはプリペアドステートメントと呼ばれるものを利用するための関数です。 
-            //プリペアドステートメントとは、SQL文を最初に用意しておいて、
-            //その後はクエリ内のパラメータの値だけを変更してクエリを実行できる機能
 
             // 挿入する値は空のまま、SQL実行の準備をする
             $stmt = $this->db->prepare($sql);
@@ -140,9 +138,39 @@ class Db{
         }
     }
 
-    // データベース接続を閉じる
-    function connectionClose(){
+    // -------- データベース更新(UPDATE) -------- お問い合わせ詳細を確認し、確認ボタンを押したら
+    function infoCheck(
+        $id
+    ){
+        try {
+            // UPDATE文を変数に格納
+            $sql = "
+                        UPDATE sample_form 
+                        SET check_color = 1
+                        WHERE id = :id;
+                    ";
+            // SQL実行の準備をする
+            $stmt = $this->db->prepare($sql);
+    
+            // 挿入する値を配列に格納する
+            $params = [
+                ':id' => $id
+            ];
+            // SQLを実行
+            $stmt->execute($params);
+            
+            // 登録完了
+            echo '更新完了しました';
+        } catch(PDOException $e) {
+            // 接続エラー
+            die('DB接続エラー' . $e->getMessage());
+        }
+    }
+    
+    // ------ データベース接続を閉じる -------
+   function connectionClose(){
         $this->db = null;
     }
+
 }
 ?>
