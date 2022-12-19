@@ -1,5 +1,5 @@
 <?php
-	require_once('./data.php');
+	require_once('./db.php');
   
   $db = new Db();                             // データベース接続
   $data = $db->getContactInfo();              // データベースから取得
@@ -54,11 +54,6 @@
               <button type="submit" name="info" onclick="checkColor('#3fb811');">
                 <?php echo $data[$i]["created_at"] ?>
               </button>
-            </td>
-          </div>
-          <div>
-            <td>
-              <?php echo $data[$i]["contact_input"] ?>
             </td>
           </div>
         </tr>

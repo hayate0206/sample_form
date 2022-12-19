@@ -1,5 +1,5 @@
 <?php
-  require_once('./data.php');
+  require_once('./db.php');
 
   $data;
   if(isset($_POST['info'])){
@@ -58,10 +58,6 @@
       <tr>
         <td>メールアドレス</td>
         <td><?= $data["mail"];?></td>
-      </tr>
-      <tr>
-        <td>お問い合わせ内容</td>
-        <td><?= $data["contact_input"];?></td>
       </tr>
       <tr>
           <td></td>

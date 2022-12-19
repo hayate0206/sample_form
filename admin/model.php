@@ -10,7 +10,6 @@ class Person {
     private $mail_confirm;
     private $password;
     private $password_confirm;
-    private $contact;
     private $created_at;
     private $check_color;
 
@@ -22,12 +21,7 @@ class Person {
             $address, 
             $phone, 
             $mail, 
-            $mail_confirm, 
             $password, 
-            $password_confirm, 
-            $contact,
-            $created_at, 
-            $check_color
     ){
         $this->full_name = $full_name;
         $this->kana = $kana;
@@ -36,12 +30,7 @@ class Person {
         $this->address = $address;
         $this->phone = $phone;
         $this->mail = $mail;
-        $this->getMail_confirm = $mail_confirm;
         $this->password = $password;
-        $this->password_confirm = $password_confirm;
-        $this->contact = $contact;
-        $this->created_at = $created_at;
-        $this->check_color = $check_color;
     }
 
 
@@ -76,9 +65,6 @@ class Person {
     // public function setPassword_confirm ($value) {
     //     $this->password_confirm = $value;
     // }
-    // public function setContact ($value) {
-    //     $this->contact = $value;
-    // }
     // public function setCreated_at ($value) {
     //     $this->created_at = $value;
     // }
@@ -108,22 +94,7 @@ class Person {
     public function getMail() {
         return $this->mail;
     }
-    public function getMail_confirm() {
-        return $this->mail_confirm;
-    }
     public function getPassword() {
         return $this->password;
-    }
-    public function getPassword_confirm() {
-        return $this->password_confirm;
-    }
-    public function getContact() {
-        return $this->contact;
-    }
-    public function getCreated_at() {
-        return $this->created_at;
-    }
-    public function getCheck_color() {
-        return $this->check_color;
     }
 }

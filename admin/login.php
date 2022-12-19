@@ -1,6 +1,6 @@
 <?php
-    require_once('./valid.php');
-    require_once('./data.php');
+    require_once('./Valid.php');
+    require_once('./db.php');
 
     // 入力内容を無害化するセキュリティ対策
     function escape($data){                 
@@ -59,10 +59,9 @@
     }
 ?>
 <!doctype html>
-<html lang="ja">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>SampleForm</title>
 </head>
 <body>
     <table>
