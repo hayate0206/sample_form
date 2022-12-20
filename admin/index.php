@@ -26,8 +26,7 @@
     <tr>
       <td></td>
       <td>ID</td>
-      <td>お問い合わせ日時</td>
-      <td>お問い合わせ内容</td>
+      <td>新規会員登録日時</td>
     </tr>
     <?php
       for($i = 0; $i < count($data); $i++){
@@ -62,11 +61,12 @@
     }
     ?>
   </table>
+  <!-- 詳細情報を確認したら色を変える（既読機能） -->
   <script>
     window.onload = function() {
       const rows = document.getElementsByClassName("confirmed");
       for (let i = 0; i < rows.length; i++) {
-          rows[i].style.backgroundColor = "#d3d3d3";
+          rows[i].style.backgroundColor = "#90ee90";
       }
     };
   </script>

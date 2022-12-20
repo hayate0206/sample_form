@@ -16,7 +16,7 @@
 </head>
 <body>
   <table>
-    <h1>お客様詳細情報</h1>
+    <h1>お客様情報詳細</h1>
     <form action="index.php" method="post">
       <tr>
         <td>ID</td>
@@ -58,6 +58,10 @@
       <tr>
         <td>メールアドレス</td>
         <td><?= $data["mail"];?></td>
+      </tr>
+      <tr>
+        <td>パスワード</td>
+        <td><?= $data["password"];?></td>
       </tr>
       <tr>
           <td></td>

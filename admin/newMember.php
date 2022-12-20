@@ -210,6 +210,8 @@ if(isset($_POST['confirm'])){
             // 形式チェック
             if(
                 isset($_POST['confirm']) 
+                && 
+                !empty($birth) 
                 && array_key_exists('birthFormat', $errors)
             ){
                 echo '<p><font color="red">'.$errors['birthFormat'].'</font></p>';
@@ -258,6 +260,8 @@ if(isset($_POST['confirm'])){
             // 形式チェック
             if(
                 isset($_POST['confirm']) 
+                && 
+                !empty($phone) 
                 && array_key_exists('phoneFormat', $errors)
             ){
                 echo '<p><font color="red">'.$errors['phoneFormat'].'</font></p>';
@@ -286,7 +290,9 @@ if(isset($_POST['confirm'])){
             // 形式チェック
             if(
                 isset($_POST['confirm']) 
-                && array_key_exists('mailFormat', $errors)
+                && 
+                !empty($mail) 
+                && array_key_exists('mailFormat', $errors) 
             ){
                 echo '<p><font color="red">'.$errors['mailFormat'].'</font></p>';
             }
@@ -342,6 +348,8 @@ if(isset($_POST['confirm'])){
             // 文字数
             if(
                 isset($_POST['confirm']) 
+                && 
+                !empty($password) 
                 && 
                 array_key_exists('passwordRange', $errors)
             ){

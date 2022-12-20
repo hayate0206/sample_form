@@ -59,10 +59,10 @@ class Db{
         return $result;
     }
 
-    // ------ テーブルのデータ(id, created_at, contact_input)を取得 ------ 管理画面(ID,問い合わせ時刻、内容)
+    // ------ テーブルのデータ(id, created_at)を取得 ------ 管理画面(ID,問い合わせ時刻、内容)
     function getContactInfo(){
         $sql = "
-                SELECT id, created_at, contact_input, check_color 
+                SELECT id, created_at, check_color 
                 FROM sample_form 
         ";
     //prepareでSQL文をセット
